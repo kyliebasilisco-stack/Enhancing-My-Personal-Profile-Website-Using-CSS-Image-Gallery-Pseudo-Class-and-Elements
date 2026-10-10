@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <title>My Personal Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+
+<body>
+<section class="profile-info">
+
+    <h1>Contact Me</h1>
+
+    <nav class="navigation">
+        <a class="nav-link" href="index1.html">Home</a> |
+        <a class="nav-link" href="about.html">About Me</a> |
+        <a class="nav-link" href="hobbies.html">Hobbies</a> |
+        <a class="nav-link" href="favorite.html">Favorites</a> |
+        <a class="nav-link" href="goals.html">Goals</a> |
+        <a class="nav-link" href="contact.html">Contact Me</a>
+    </nav>
+
+    <hr>
+
+    <h2 class="section-title">Get in Touch</h2>
+
+    <p><b>Please fill out the form below to contact me:</b></p>
+
+    <form id="f" class="contact-form" onsubmit="sendEmail(event)">
+
+        <label class="form-label" for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required>
+
+        <br><br>
+
+        <label class="form-label" for="email">Email Address:</label><br>
+        <input type="email" id="email" name="email" required>
+
+        <br><br>
+
+        <label class="form-label">Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label>
+
+        <br><br>
+
+        <label class="form-label" for="grade">Grade Level &amp; Strand:</label><br>
+        <select id="grade" name="grade_level_strand">
+            <option>ASHH CLUSTER 11</option>
+            <option>HUMMS 12</option>
+            <option>STEM CLUSTER 11</option>
+            <option>STEM 12</option>
+            <option>BNE CLUSTER 11</option>
+            <option>ABM 12</option>
+            <option>GAS CLUSTER 11</option>
+            <option>GAS 12</option>
+            <option>ICT CLUSTER 11</option>
+            <option>ICT 12</option>
+        </select>
+
+        <br><br>
+
+        <label class="form-label">Interests:</label><br>
+
+        <input type="checkbox" id="arts" name="interest" value="Arts">
+        <label for="arts">Arts</label>
+
+        <input type="checkbox" id="drawing" name="interest" value="Drawing">
+        <label for="drawing">Drawing</label><br>
+
+        <input type="checkbox" id="dancing" name="interest" value="Dancing">
+        <label for="dancing">Dancing</label>
+
+        <input type="checkbox" id="singing" name="interest" value="Singing">
+        <label for="singing">Singing</label><br>
+
+        <input type="checkbox" id="gaming" name="interest" value="Gaming">
+        <label for="gaming">Gaming</label>
+
+        <input type="checkbox" id="sports" name="interest" value="Sports">
+        <label for="sports">Sports</label><br>
+
+        <input type="checkbox" id="cooking" name="interest" value="Cooking">
+        <label for="cooking">Cooking</label>
+
+        <input type="checkbox" id="technology" name="interest" value="Technology">
+        <label for="technology">Technology</label>
+
+        <br><br>
+
+        <label class="form-label" for="purpose">Purpose of Visit:</label><br>
+        <select id="purpose" name="purpose">
+            <option>General Inquiry</option>
+            <option>Feedback</option>
+            <option>Collaboration</option>
+            <option>School Project</option>
+            <option>Others</option>
+        </select>
+
+        <br><br>
+
+        <label class="form-label" for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="7" cols="50" required></textarea>
+
+        <p id="s"></p>
+
+        <input type="hidden" name="title" value="Contact Me Form">
+        <input type="hidden" id="t" name="time">
+
+        <input class="btn primary" type="submit" value="Send Message">
+        <input class="btn primary" type="reset" value="Clear Form">
+
+        <br><br>
+
+        <label class="form-label">Before you go, am I cute?</label><br>
+
+        <input type="radio" id="cute-yes" name="cute" value="yes">
+        <label for="cute-yes">Yes</label>
+
+        <input type="radio" id="cute-absolutely" name="cute" value="absolutely">
+        <label for="cute-absolutely">Absolutely</label>
+
+        <br><br>
+
+        <a class="nav-link" href="index.html">Back to Homepage</a>
+
+    </form>
+
+</section>
+
+<script>
+    emailjs.init({
+        publicKey: "KUK4_2LJAC2j8W4Xo"
+    });
+
+    const contactForm = document.getElementById("f");
+    const statusMessage = document.getElementById("s");
+    const timeField = document.getElementById("t");
+
+    function sendEmail(event) {
+        event.preventDefault();
+
+        timeField.value = new Date().toString();
+        statusMessage.textContent = "Sending...";
+
+        emailjs.sendForm(
+            "service_w8ei0bj",
+            "template_0ud8ufj",
+            contactForm
+        )
+        .then(() => {
+            statusMessage.textContent = "Successfully Sent!";
+            contactForm.reset();
+        })
+        .catch(() => {
+            statusMessage.textContent = "Failed to send. Please try again.";
+        });
+    }
+</script>
+
+</body>
+</html>
